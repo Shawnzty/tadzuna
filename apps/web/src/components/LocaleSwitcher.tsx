@@ -7,6 +7,7 @@ import { routing } from '@/i18n/routing';
 const labels: Record<string, string> = {
   ja: 'JP',
   en: 'EN',
+  zh: '中文',
 };
 
 export function LocaleSwitcher() {

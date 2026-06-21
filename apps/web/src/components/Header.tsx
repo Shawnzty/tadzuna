@@ -2,13 +2,12 @@
 
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import type { Locale } from '@tadzuna/shared';
 import { LogoLockup } from './Logo';
 import { ThemeToggle } from './ThemeToggle';
 import { LocaleSwitcher } from './LocaleSwitcher';
 
 export function Header() {
-  const locale = useLocale() as Locale;
+  const locale = useLocale();
   const t = useTranslations('nav');
 
   return (
@@ -22,12 +21,6 @@ export function Header() {
             <LogoLockup />
           </Link>
           <nav className="hidden sm:flex items-center gap-4">
-            <Link
-              href={`/${locale}/machines`}
-              className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-            >
-              {t('machines')}
-            </Link>
             <Link
               href={`/${locale}/estimate`}
               className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"

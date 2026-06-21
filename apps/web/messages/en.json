@@ -1,65 +1,36 @@
 {
   "meta": {
-    "title": "Tadzuna — Local LLM Inference Machines",
-    "description": "Assembled, tested, 1-year-warrantied local LLM inference machines. 32GB–128GB VRAM to run large models on your own hardware."
+    "title": "Tadzuna — Take the reins of AI",
+    "description": "Custom AI that puts your business ahead — built around your data, owned and run by you. Tadzuna designs and ships enterprise AI systems on infrastructure you own."
   },
   "nav": {
     "home": "Home",
-    "machines": "Machines",
-    "estimate": "VRAM Calculator",
+    "estimate": "Local LLM",
     "compatibility": "Compatibility",
     "contact": "Contact"
   },
-  "hero": {
-    "headline": "Run LLMs on your own hardware.",
-    "subheadline": "Fully assembled, tested, PSE-converted, 1-year-warrantied machines — for about the cost of DIY parts. 32GB to 128GB of VRAM for large models, on your desk.",
-    "cta": "View Machines",
-    "valueProp": "A fully assembled, tested, PSE-converted, 1-year-warrantied unit for about the cost of buying DIY parts in Japan."
-  },
-  "machines": {
-    "title": "Machines",
-    "subtitle": "Pick by workload and VRAM — local LLM inference machines.",
-    "featured": "Featured",
-    "allMachines": "All Machines",
-    "viewDetails": "View Details",
-    "inquire": "Inquire / Request a quote",
-    "specs": "Specifications",
-    "performance": "Measured performance",
-    "perfPending": "Benchmarks coming soon.",
-    "tokensPerSec": "tokens/sec",
-    "quant": "Quant",
-    "canRun": "What it can run",
-    "bestFor": "Best for",
-    "valueProps": "Why this machine",
-    "gpuConfig": "GPU Configuration",
-    "gpuPlatform": "GPU Platform",
-    "memoryType": "Memory type",
-    "cpu": "CPU",
-    "motherboard": "Motherboard",
-    "ram": "Memory",
-    "storage": "Storage",
-    "psu": "Power supply",
-    "chassis": "Chassis",
-    "cooling": "Cooling",
-    "warranty": "Warranty",
-    "compliance": "Compliance",
-    "vram": "VRAM",
-    "cores": "cores",
-    "threads": "threads",
-    "price": "Price",
-    "from": "",
-    "back": "Back to machines"
-  },
-  "comparison": {
-    "title": "How we compare",
-    "subtitle": "We compete at 32GB+ VRAM, where price-performance matters most.",
-    "product": "Product",
-    "vram": "VRAM",
-    "approxPrice": "Approx. price",
-    "note": "Notes",
-    "ourLineup": "Our lineup",
-    "ourRange": "$2,890–$9,020",
-    "ourNote": "32GB–128GB VRAM · assembled / tested / 1-year warranty"
+  "home": {
+    "tagline": "Take the reins of AI. Pull ahead.",
+    "intro": "Custom AI that puts your business ahead — built around your data, owned and run by you.",
+    "cta": "Get in touch",
+    "beliefTitle": "AI built for your business — not rented from someone else's cloud.",
+    "beliefBody": "We design and build AI around your data, your stack, and your goals — then ship it all the way to production on infrastructure you own. Not a rented API. Not slideware. Systems that are truly yours.",
+    "principles": {
+      "custom": {
+        "title": "Built around you",
+        "body": "Tailored to your data, workflows, and constraints — not a one-size-fits-all API."
+      },
+      "owned": {
+        "title": "Owned, not rented",
+        "body": "Deployed on infrastructure you own. Your models, your data — no lock-in, no meter."
+      },
+      "delivered": {
+        "title": "Shipped to production",
+        "body": "From prototype to production, we deliver working systems — backed by the chops to build the hardware too."
+      }
+    },
+    "closingTitle": "Ready to take the reins?",
+    "closingCta": "Get in touch"
   },
   "estimate": {
     "title": "How much VRAM do I need?",
@@ -80,37 +51,16 @@
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "Questions, quotes, or custom builds — we'd love to hear from you.",
+    "subtitle": "Tell us what you're building. We'll get back to you quickly.",
     "name": "Name",
     "email": "Email",
     "phone": "Phone (optional)",
     "company": "Company (optional)",
-    "machine": "Machine of Interest",
-    "selectMachine": "Select a machine",
     "message": "Message",
     "submit": "Send",
     "sending": "Sending...",
     "success": "Thank you for your inquiry. We'll get back to you shortly.",
     "error": "Failed to send. Please try again."
-  },
-  "whyLocal": {
-    "title": "Why Local LLM?",
-    "privacy": {
-      "title": "Complete Privacy",
-      "description": "Your data never leaves your premises. Process sensitive information with confidence."
-    },
-    "cost": {
-      "title": "No Recurring Costs",
-      "description": "No per-token API fees. Buy once, run inference unlimited times."
-    },
-    "latency": {
-      "title": "Ultra-Low Latency",
-      "description": "Zero network delay. Ideal for real-time applications."
-    },
-    "control": {
-      "title": "Full Control",
-      "description": "Choose your model, quantization, context length — customize everything."
-    }
   },
   "common": {
     "back": "Back",
