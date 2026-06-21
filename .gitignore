@@ -9,6 +9,9 @@ dist/
 next-env.d.ts
 .turbo/
 
+# Claude Code local tooling (preview launch config, local settings)
+.claude/
+
 # OS files
 .DS_Store
 

@@ -1,16 +1,16 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { setRequestLocale } from 'next-intl/server';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import type { Locale } from '@tadzuna/shared';
 import { Quicksand, Inter } from 'next/font/google';
 
 const quicksand = Quicksand({
   subsets: ['latin'],
-  weight: ['500', '600'],
+  weight: ['500', '600', '700'],
   variable: '--font-quicksand',
   display: 'swap',
 });
@@ -22,6 +22,19 @@ const inter = Inter({
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'meta' });
+  return {
+    title: t('title'),
+    description: t('description'),
+  };
 }
 
 export default async function LocaleLayout({
@@ -62,7 +75,7 @@ export default async function LocaleLayout({
           <ThemeProvider>
             <Header />
             <main className="flex-1">{children}</main>
-            <Footer locale={locale as Locale} />
+            <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

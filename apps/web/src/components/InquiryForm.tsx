@@ -1,24 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { useSearchParams } from 'next/navigation';
-import { MACHINES } from '@tadzuna/shared';
-import { useLocale } from 'next-intl';
-import type { Locale } from '@tadzuna/shared';
+import { useTranslations, useLocale } from 'next-intl';
 
 export function InquiryForm() {
   const t = useTranslations('contact');
-  const locale = useLocale() as Locale;
-  const searchParams = useSearchParams();
-  const preselectedMachine = searchParams.get('machine') ?? '';
+  const locale = useLocale();
 
   const [form, setForm] = useState({
     name: '',
     email: '',
     phone: '',
     company: '',
-    machineId: preselectedMachine,
     message: '',
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -113,38 +106,18 @@ export function InquiryForm() {
 
       <div>
         <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wider">
-          {t('machine')}
-        </label>
-        <select
-          value={form.machineId}
-          onChange={(e) => setForm({ ...form, machineId: e.target.value })}
-          className={`${inputClass} appearance-none cursor-pointer`}
-        >
-          <option value="">{t('selectMachine')}</option>
-          {MACHINES.filter((m) => m.status === 'active').map((m) => (
-            <option key={m.id} value={m.id}>
-              {m.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wider">
           {t('message')} *
         </label>
         <textarea
           required
-          rows={4}
+          rows={5}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           className={`${inputClass} h-auto py-3 resize-none`}
         />
       </div>
 
-      {status === 'error' && (
-        <p className="text-sm text-red-500">{t('error')}</p>
-      )}
+      {status === 'error' && <p className="text-sm text-red-500">{t('error')}</p>}
 
       <button
         type="submit"

@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "title": "Tadzuna — 驾驭 AI，赢得先机",
+    "description": "让你的业务领先一步的定制 AI——围绕你的数据打造，由你拥有运行。Tadzuna 为企业设计并交付 AI 系统，部署在你自有的基础设施上。"
+  },
+  "nav": {
+    "home": "首页",
+    "estimate": "本地部署LLM",
+    "compatibility": "兼容性",
+    "contact": "联系我们"
+  },
+  "home": {
+    "tagline": "驾驭 AI，赢得先机。",
+    "intro": "让你的业务领先一步的定制 AI——围绕你的数据打造，由你拥有、由你运行。",
+    "cta": "联系我们",
+    "beliefTitle": "为你的业务而造的 AI，而非租自别人云端的 AI。",
+    "beliefBody": "我们围绕你的数据、技术栈和目标来设计、构建 AI，再部署到你自有的基础设施上、一路交付到生产。不是租来的 API，也不是 PPT 方案——而是真正属于你的系统。",
+    "principles": {
+      "custom": {
+        "title": "为你而造",
+        "body": "贴合你的数据、流程与约束——而非千篇一律的 API。"
+      },
+      "owned": {
+        "title": "拥有，而非租用",
+        "body": "部署在你自有的基础设施上。模型与数据都归你——无锁定、无计量。"
+      },
+      "delivered": {
+        "title": "交付到生产",
+        "body": "从原型到生产，交付能跑的系统——还有自己造硬件的真功夫。"
+      }
+    },
+    "closingTitle": "准备好驾驭你的 AI 了吗？",
+    "closingCta": "联系我们"
+  },
+  "estimate": {
+    "title": "我需要多少显存？",
+    "description": "基于 4-bit 量化、8K 上下文、单用户、NVIDIA GPU 的估算。",
+    "back": "返回",
+    "maxContext": "最大上下文",
+    "intelligenceScore": "智能分数",
+    "external": "（外部数据）",
+    "estimatedVram": "预估显存",
+    "disclaimer": "基于 4-bit 量化、8K 上下文、单用户、NVIDIA GPU。"
+  },
+  "compatibility": {
+    "title": "这个模型能在我的 GPU 上跑吗？",
+    "back": "返回",
+    "estimatedNeed": "预估显存需求",
+    "availableVram": "可用显存",
+    "disclaimer": "基于 4-bit 量化、8K 上下文、单用户、NVIDIA GPU。"
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "说说你想做什么，我们会尽快回复。",
+    "name": "姓名",
+    "email": "邮箱",
+    "phone": "电话（选填）",
+    "company": "公司（选填）",
+    "message": "留言",
+    "submit": "发送",
+    "sending": "发送中...",
+    "success": "感谢您的咨询，我们会尽快与您联系。",
+    "error": "发送失败，请重试。"
+  },
+  "common": {
+    "back": "返回",
+    "model": "模型",
+    "size": "规模",
+    "gpu": "GPU",
+    "selectModel": "选择模型系列",
+    "selectSize": "选择规模",
+    "selectModelFirst": "请先选择模型",
+    "selectGpu": "选择 GPU"
+  }
+}

@@ -1,16 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
-import { MACHINES, MARKET_ANCHORS, LOCALE_CURRENCY } from '@tadzuna/shared';
-import type { Locale } from '@tadzuna/shared';
-import { MachineCard } from '@/components/MachineCard';
 
-function formatJPY(n: number, locale: Locale): string {
-  if (locale === 'en') {
-    const usd = Math.round((n * 0.006452) / 10) * 10;
-    return `~$${usd.toLocaleString('en-US')}`;
-  }
-  return `¥${n.toLocaleString('ja-JP')}`;
-}
+const PRINCIPLES = ['custom', 'owned', 'delivered'] as const;
 
 export default async function HomePage({
   params,
@@ -19,129 +10,84 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const loc = locale as Locale;
-  const t = await getTranslations();
-  const featuredMachines = MACHINES.filter((m) => m.featured).sort((a, b) => a.rank - b.rank);
+  const t = await getTranslations('home');
 
   return (
     <div>
-      {/* Hero */}
-      <section className="px-6 py-20 sm:py-28">
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
-            {t('hero.headline')}
+      {/* Hero — company tagline */}
+      <section className="px-6 pt-24 pb-20 sm:pt-32 sm:pb-28">
+        <div className="mx-auto max-w-4xl text-center">
+          <h1
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-balance text-ink dark:text-gray-50"
+            style={{ fontFamily: 'var(--font-quicksand), sans-serif' }}
+          >
+            {t('tagline')}
           </h1>
-          <p className="mt-4 text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
-            {t('hero.subheadline')}
+          <span
+            className="mt-7 mx-auto block h-1 w-16 rounded-full bg-leather"
+            aria-hidden="true"
+          />
+          <p className="mt-8 mx-auto max-w-2xl text-lg sm:text-xl leading-relaxed text-gray-600 dark:text-gray-300">
+            {t('intro')}
           </p>
-          <div className="mt-8">
+          <div className="mt-10">
             <Link
-              href={`/${locale}/machines`}
-              className="inline-flex items-center px-6 py-3 rounded-xl bg-leather text-[#FBF4EC] text-sm font-medium hover:opacity-90 transition-opacity"
+              href={`/${locale}/contact`}
+              className="inline-flex items-center rounded-xl bg-leather px-7 py-3.5 text-sm font-medium text-[#FBF4EC] transition-opacity hover:opacity-90"
             >
-              {t('hero.cta')}
+              {t('cta')}
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Featured machines */}
-      <section className="px-6 pb-16">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-6">
-            {t('machines.featured')}
+      {/* What we believe */}
+      <section className="border-t border-gray-200 px-6 py-20 dark:border-gray-800">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2
+            className="text-2xl sm:text-3xl font-bold tracking-tight text-balance text-ink dark:text-gray-100"
+            style={{ fontFamily: 'var(--font-quicksand), sans-serif' }}
+          >
+            {t('beliefTitle')}
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {featuredMachines.map((machine) => (
-              <MachineCard key={machine.id} machine={machine} locale={locale} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison table */}
-      <section className="px-6 py-16 border-t border-gray-200 dark:border-gray-800">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1 text-center">
-            {t('comparison.title')}
-          </h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-8 text-center">
-            {t('comparison.subtitle')}
+          <p className="mt-5 text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+            {t('beliefBody')}
           </p>
-          <div className="overflow-x-auto rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-800 text-gray-500 dark:text-gray-400">
-                  <th className="text-left font-medium py-3 px-4">{t('comparison.product')}</th>
-                  <th className="text-right font-medium py-3 px-4">{t('comparison.vram')}</th>
-                  <th className="text-right font-medium py-3 px-4">{t('comparison.approxPrice')}</th>
-                  <th className="text-left font-medium py-3 px-4 hidden sm:table-cell">{t('comparison.note')}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* Our lineup highlighted */}
-                <tr className="border-b border-gray-100 dark:border-gray-800/50 bg-leather/10 dark:bg-leather/15">
-                  <td className="py-3 px-4 font-semibold text-gray-900 dark:text-gray-100">
-                    {t('comparison.ourLineup')}
-                  </td>
-                  <td className="py-3 px-4 text-right tabular-nums text-gray-900 dark:text-gray-100">32–128GB</td>
-                  <td className="py-3 px-4 text-right tabular-nums text-gray-900 dark:text-gray-100">
-                    {t('comparison.ourRange')}
-                  </td>
-                  <td className="py-3 px-4 text-gray-600 dark:text-gray-300 hidden sm:table-cell">
-                    {t('comparison.ourNote')}
-                  </td>
-                </tr>
-                {MARKET_ANCHORS.map((a) => (
-                  <tr key={a.name} className="border-b border-gray-100 dark:border-gray-800/50 last:border-0">
-                    <td className="py-3 px-4 text-gray-700 dark:text-gray-300">{a.name}</td>
-                    <td className="py-3 px-4 text-right tabular-nums text-gray-600 dark:text-gray-400">{a.vramGB}GB</td>
-                    <td className="py-3 px-4 text-right tabular-nums text-gray-600 dark:text-gray-400">
-                      {formatJPY(a.approxJPY, loc)}
-                    </td>
-                    <td className="py-3 px-4 text-gray-500 dark:text-gray-400 hidden sm:table-cell">{a.note[loc]}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </div>
       </section>
 
-      {/* Why local LLM */}
-      <section className="px-6 py-16 border-t border-gray-200 dark:border-gray-800">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-8 text-center">
-            {t('whyLocal.title')}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {(['privacy', 'cost', 'latency', 'control'] as const).map((key) => (
-              <div
-                key={key}
-                className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6"
+      {/* Principles */}
+      <section className="border-t border-gray-200 px-6 py-20 dark:border-gray-800">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-10 sm:grid-cols-3">
+          {PRINCIPLES.map((key) => (
+            <div key={key}>
+              <h3
+                className="mb-2 font-semibold text-ink dark:text-gray-100"
+                style={{ fontFamily: 'var(--font-quicksand), sans-serif' }}
               >
-                <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-2">
-                  {t(`whyLocal.${key}.title`)}
-                </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {t(`whyLocal.${key}.description`)}
-                </p>
-              </div>
-            ))}
-          </div>
+                {t(`principles.${key}.title`)}
+              </h3>
+              <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                {t(`principles.${key}.body`)}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Footer CTA */}
-      <section className="px-6 py-16 text-center border-t border-gray-200 dark:border-gray-800">
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 max-w-xl mx-auto">
-          {t('hero.valueProp')}
-        </p>
+      {/* Closing CTA */}
+      <section className="border-t border-gray-200 px-6 py-24 text-center dark:border-gray-800">
+        <h2
+          className="mb-8 text-2xl sm:text-3xl font-bold tracking-tight text-balance text-ink dark:text-gray-100"
+          style={{ fontFamily: 'var(--font-quicksand), sans-serif' }}
+        >
+          {t('closingTitle')}
+        </h2>
         <Link
           href={`/${locale}/contact`}
-          className="inline-flex items-center px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-700 text-sm font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="inline-flex items-center rounded-xl bg-leather px-7 py-3.5 text-sm font-medium text-[#FBF4EC] transition-opacity hover:opacity-90"
         >
-          {t('nav.contact')}
+          {t('closingCta')}
         </Link>
       </section>
     </div>
